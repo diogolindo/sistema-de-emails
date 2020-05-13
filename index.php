@@ -14,24 +14,31 @@ session_start();
 
 <body>
 
-<p id="titulo" class="row">
-Adquira Gratuitamente o guia definitivo e simplificado sobre o imposto de renda 2020!
-</p><br>
+<div id="corpo" class="row">
+    <div id="esquerda">
+        <p id="titulo" class="row">
+        Adquira Gratuitamente o guia definitivo e simplificado sobre o imposto de renda 2020!
+        </p><br>
 
-<p id="introducao" class="row">
-De forma simples e rápida para a compreensão, chegou o novo guia definitivo explicando exatamente como calcular o Imposto de renda 2020!
-E é grátis! Somente repasse seu nome e e-mail abaixo para que assim possamos enviar um e-mail contendo um link para o download gratuito
-e seguro.
-</p>
+        <p id="introducao" class="row">
+        De forma simples e rápida para a compreensão, chegou o novo guia definitivo explicando exatamente como calcular o Imposto de renda 2020!
+        E é grátis! Somente repasse seu nome e e-mail abaixo para que assim possamos enviar um e-mail contendo um link para o download gratuito
+        e seguro.
+        </p>
+    </div>
 
-<form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
-    <input type="text" class="form" name="nomeForm" value=""
-    class="row" required placeholder="Digite seu nome"
-    pattern="^(?![ ])(?!.*[ ]{2})((?:e|da|do|das|dos|de|d'|D'|la|las|el|los)\s*?|(?:[A-Z][^\s]*\s*?)(?!.*[ ]$))+$">
-    <input type="email" class="form" name="emailForm" value=""
-    class="row" required placeholder="Digite seu e-mail">
-    <button type="submit" id="enviar" class="row" name="enviarForm">Resgate o documento grátis</button>
-</form>
+    <div id="direita">
+        <p class="insira">INSIRA SEU NOME E E-MAIL AQUI PARA RECEBER O DOCUMENTO TOTALMENTE GRATUITO</p>
+        <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
+            <input type="text" class="form" name="nomeForm" value=""
+            class="row" required placeholder="Digite seu nome"
+            pattern="^(?![ ])(?!.*[ ]{2})((?:e|da|do|das|dos|de|d'|D'|la|las|el|los)\s*?|(?:[A-Z][^\s]*\s*?)(?!.*[ ]$))+$">
+            <input type="email" class="form" name="emailForm" value=""
+            class="row" required placeholder="Digite seu e-mail">
+            <button type="submit" class="enviar" class="row" name="enviarForm">RESGATE O DOCUMENTO</button>
+        </form>
+    </div>
+</div>
 
 <?php
 
@@ -58,7 +65,7 @@ if(isset($_POST['enviarForm'])){
     $conteudo .= "Acesse o link a seguir para realizar o download: https://guiaimpostocimol.000webhostapp.com/download.php";
     //adicional
     $headers = "Content-Type: text/plain;charset=utf-8\r\n";
-
+    $_SESSION['nomeForm'] = $nomeForm;
     //envia email
     $status = mail($emailForm, mb_encode_mimeheader($assunto, "utf-8"), $conteudo, $headers);
 
