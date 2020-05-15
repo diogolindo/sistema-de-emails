@@ -1,3 +1,12 @@
+<?php
+
+if(!isset($_GET['acesso'])){
+    header('Location: index.php');
+    exit();
+}
+
+?>
+
 <html>
 
 <head>
@@ -12,7 +21,7 @@
 <div id="corpodown">
     <p class="insira" id="bemvindo" class="row">Bem vindo!</p>
     
-    <a href="scrumFinalCerto.pdf" download="Guia Imposto de Renda.pdf">
+    <a href="guia.pdf" download="Guia Imposto de Renda.pdf">
     <button type="submit" class="enviar" class="row" name="enviarForm">Realizar download do documento</button>
     </a>
 </div>

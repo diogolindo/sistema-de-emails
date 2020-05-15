@@ -22,8 +22,8 @@ session_start();
 
         <p id="introducao" class="row">
         De forma simples e rápida para a compreensão, chegou o novo guia definitivo explicando exatamente como calcular o Imposto de renda 2020!
-        E é grátis! Somente repasse seu nome e e-mail abaixo para que assim possamos enviar um e-mail contendo um link para o download gratuito
-        e seguro.
+        E é grátis! Somente repasse seu nome e e-mail para que assim possamos enviar um e-mail contendo um link para o download gratuito e seguro.<br>
+        Observação: o e-mail pode levar alguns minutos para ser enviado assim como pode cair na caixa de spams.
         </p>
     </div>
 
@@ -56,13 +56,17 @@ if(isset($_POST['enviarForm'])){
     fwrite($arquivoAberto, $conteudo);
     fclose($arquivoAberto);
 
+    //controle de acesso
+    $data = date("d/m/Y");
+    $acesso = md5($data);
+
     //dados do e-mail que será enviado
     //assunto
     $assunto = "Documento sobre Imposto de renda";
     //conteudo
     $conteudo = "Olá, ".$nomeForm."!\r\n";
     $conteudo .= "Você entrou em contato para receber o guia do Imposto de Renda 2020.\r\n";
-    $conteudo .= "Acesse o link a seguir para realizar o download: https://guiaimpostocimol.000webhostapp.com/download.php";
+    $conteudo .= "Acesse o link a seguir para realizar o download: https://diogoimpostocimol.000webhostapp.com/download.php?acesso=".$acesso;
     //adicional
     $headers = "Content-Type: text/plain;charset=utf-8\r\n";
     $_SESSION['nomeForm'] = $nomeForm;
