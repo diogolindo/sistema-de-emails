@@ -68,7 +68,11 @@ if(isset($_POST['enviarForm'])){
     $conteudo .= "Você entrou em contato para receber o guia do Imposto de Renda 2020.\r\n";
     $conteudo .= "Acesse o link a seguir para realizar o download: https://diogoimpostocimol.000webhostapp.com/download.php?acesso=".$acesso;
     //adicional
-    $headers = "Content-Type: text/plain;charset=utf-8\r\n";
+    $headers = 'From: Guia do Imposto <diogo-kengelmann@educar.rs.gov.br>'."\r\n" .
+        'Reply-To: diogo-kengelmann@educar.rs.gov.br '. "\r\n" .
+        'X-Mailer: MyFunction/' . phpversion().
+        'MIME-Version: 1.0' . "\n".
+        'Content-type: text/html; charset=UTF-8' . "\r\n";
     $_SESSION['nomeForm'] = $nomeForm;
     //envia email
     $status = mail($emailForm, mb_encode_mimeheader($assunto, "utf-8"), $conteudo, $headers);
